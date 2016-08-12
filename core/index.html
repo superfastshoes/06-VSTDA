@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+	<meta charset="UTF-8">
+	<title>Get It Done</title>
+	<!--bower:css-->
+	<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+	<!--endbower-->
+	<!-- inject:css -->
+	<link rel="stylesheet" href="css/style.css">
+	<!-- endinject -->
+</head>
+<body class = "container">
+	
+	<div ng-controller="ToDoListController" >
+		
+		<div id="header">
+			<h1> A Very Simple To Do App</h1>
+		</div>
+		
+		<div class="col-md-6">
+		<!-- Here the user will input all of their tasks -->
+			<form id="myForm" class="form-group">
+				<div >
+					<label for="addTask">Enter a Task</label>
+					<input type="text" class="form-control" name="addTask" placeholder="Let's Get Organized -" ng-model="toDo.name"/>
+				</div>
+
+				<!-- After inputing an item, the user then sets the priority -->
+				<div>
+					<label for="priSelect">Set Priority</label>
+					<select class="form-control input-sm" id="priSelect" ng-model="toDo.priority">
+						<option value="1" >A High Priority Item</option>
+						<option value="2" >A Medium Priority Item</option>
+						<option value="3" >A Low Priority Item</option>
+					</select>				
+				</div>			
+			</form>
+			<!-- Then the user clicks on the button to submit -->
+				<button type="submit" class="btn btn-warning" ng-click="submitTask()">Add Task</button>
+		</div>
+		<!-- Here the user will see the list populate as they add items -->
+		<!-- <div class="col-md-6">
+			<div>
+				<button class="btn btn-danger btn-sm" ng-click="myOrderBy = '+priority';">Order by highest priority</button>
+				<button class="btn btn-info btn-sm" ng-click="myOrderBy = '-priority';">Order by lowest priority</button>
+				<button class="btn btn-warning btn-sm" ng-click="myOrderBy = 'name';">Order alphabetically</button>
+			</div>
+			<ul class="list-group" ng-repeat="task in taskList | orderBy:myOrderBy">
+			    <li class="list-group-item" ng-class="{ 
+			    				'danger': task.priority === '1', 
+			    				'success': task.priority === '3', 
+			    				'warning': task.priority === '2' }" >{{task.name}}</li>
+			</ul>
+		</div> -->
+		<div class="col-md-6">
+			<table class="table">
+				<thead>
+					<tr>
+						<td>
+							<div class="btn-group">						
+								<button href="#" class="btn btn-danger" ng-click="myOrderBy = '+priority';">Order by highest priority</button><button href="#" class="btn btn-success" ng-click="myOrderBy = '-priority';">Order by lowest priority</button><button href="#" class="btn btn-primary" ng-click="myOrderBy = 'name';">Order alphabetically</button>	
+							</div>							
+						</td>
+						<!-- <td>
+								<button href="#" class="btn btn-success" ng-click="myOrderBy = '-priority';">Order by lowest priority</button><button href="#" class="btn btn-primary" ng-click="myOrderBy = 'name';">Order alphabetically</button>
+						</td>
+						<td>
+								<button href="#" class="btn btn-primary" ng-click="myOrderBy = 'name';">Order alphabetically</button>
+						</td>	 -->
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="text-center" ng-repeat="task in taskList | orderBy:myOrderBy">
+						<td ng-class="{ 
+										'danger': task.priority === '1', 
+										'success': task.priority === '3', 
+										'warning': task.priority === '2' }">{{task.name}}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	<!-- bower:js -->
+	<script src="bower_components/angular/angular.js"></script>
+	<script src="bower_components/jquery/dist/jquery.js"></script>
+	<script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+	<!-- endbower -->	
+	<!-- inject:js -->
+	<script src="js/app.js"></script>
+	<script src="js/home.controller.js"></script>
+	<!-- endinject -->
+</body>
+</html>
