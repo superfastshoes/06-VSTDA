@@ -1,4 +1,6 @@
-angular.module('app').controller('ToDoListController', function($scope){
+angular
+.module('app')
+.controller('ToDoListController', function($scope){
 	//$scope.taskItem = "";
 	//$scope.taskPriority = "";
 	$scope.submitTask = submitTask;
